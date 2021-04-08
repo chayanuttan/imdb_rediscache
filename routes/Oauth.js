@@ -24,35 +24,34 @@ router.post('/register', function (req, res, next) {
       username:req.body.username,
       password:req.body.password,
       ssn:req.body.ssn,
-      phone:req.body.phone_number
-    })
-    // หาก ลงทะเบียนสำเร็จ
-    if (true == true){
-        // จะเก็บ id object ลง username
-        res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: true });
-        console.log('register successfully');
-    } else {
-        res.render('sign_up');
-    }
-
-    res.render('sign_in');
-    
-});
+      phone:req.body.phone_number})
+    rows.find({username:req.body.username},{password:req.body.password})
+      .then(async (data) =>{
+        if (data = !undefined){ // หาก ลงทะเบียนสำเร็จ
+            // จะเก็บ id object ลง username
+            res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: true });
+            console.log('register successfully');
+        } else {
+            res.render('sign_up');
+        }
+        res.render('sign_in');
+      });
+    });
 
 router.post('/login', function (req, res, next) {
     console.log(req.body.username);
     console.log(req.body.password);
-
-    // หาก ล็อกอินสำเร็จ
-    if (true == true){
-        // จะเก็บ id object ลง username
+    var userData = db.get('user');
+    userData.find({username:req.body.username},{password:req.body.password})
+      .then(async (data) => {
+        console.log(data)
+        if (data = !undefined){
         res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: true });
         console.log('login successfully');
-    } else {
-        res.render('sign_in');
-    }
-
-    res.render('index');
+        }else {
+            res.render('sign_in');}
+        res.render('index');
+    });
 });
 
 module.exports = router;
