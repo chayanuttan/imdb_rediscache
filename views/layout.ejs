@@ -16,12 +16,29 @@
           <li class="nav-item">
             <a class="nav-link" href="#" >List</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Oauth/login" >Sign in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Oauth/register" >Sing up</a>
-          </li>
+
+          
+          <div id="not_login_yet">
+            <li class="nav-item">
+              <a class="nav-link" href="/Oauth/login" >Sign in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Oauth/register" >Sing up</a>
+            </li>
+          </div>
+
+          <div id="login_success">
+            <li class="nav-item">
+              <a class="nav-link" href="#" >name</a>
+            </li>
+          </div>
+
+          <script>
+            var user = document.cookie;
+
+            alert(user["username"]);
+          </script>
+          
         </ul>
       </div>
     </div>
