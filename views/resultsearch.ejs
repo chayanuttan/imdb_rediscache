@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Search</title>
-    </head>
-    <body> 
-        <%- include layout %>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+
+<body>
+    <%- include layout %>
         <div class="container">
-            <h1>List Movies Form Seaching</h1>
+            <h1>ผลการค้นหาโรงแรม</h1>
+            <div>
+                <table>
+                    <% for(var item of items){%>
+                        <tr>
+                            <td>
+                            <article class="item">
+                                <div>Name: <%=item.name%>
+                                </div>
+                                <div>Street: <%=item.street%>
+                                </div>
+                                <div>Amenities: <%=item.amenities.substring(0, 49)%>
+                                </div>
+                                <div>Rating: <%=item.rating%> (<%=item.reviews.substring(14, 17)%>)
+                                </div>
+                                <br>
+                            </article>
+                        </td>
+                        <td><a href="/" class="btn btn-primary" role="button">Booking</a></td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
             <a href="/">back home</a>
         </div>
-    </body>
+</body>
+
 </html>

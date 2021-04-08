@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const monk = require('monk')
 // Connection URL
-const url = 'localhost:27017/imdb';
+const url = 'localhost:27017/hotelsystem';
 const db = monk(url);
 
 db.then(() => {
@@ -17,15 +17,15 @@ router.get('/add', function(req, res, next) {
   });
 router.post('/add', function(req, res, next) {
     console.log(req.body.name);
-    var rows = db.get('movies');
+    var rows = db.get('hotel');
     rows.insert({
       name:req.body.name,
-      description:req.body.description
+      location:req.body.description,
+      phone:req.body.phone
     }),function(err,blog){
       if(err){
         res.send(err);
       }else{
-        res.location('/');
         res.redirect('/');
       }
     }
