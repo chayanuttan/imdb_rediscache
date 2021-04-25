@@ -14,7 +14,7 @@
         <script>
             const xhttp = new XMLHttpRequest();
 
-            xhttp.open("GET", "http://localhost:3000/hotel/<%= id%>/detail", false);
+            xhttp.open("GET", "http://localhost:3000/hotel/<%= id%>/detail_hotel", false);
             xhttp.send();
 
             const detail_hotel = JSON.parse(xhttp.responseText);
@@ -37,6 +37,7 @@
                 innerhtml += `              <div class="row">
                                                 <div class="p-3">ID : ${detail_hotel.id}</div>
                                                 <input type="hidden" id="hotel_id" name="hotel_id" value="${detail_hotel.id}">
+                                                <input type="hidden" id="user_id" name="user_id" value="1">
                                             </div>`;
                 innerhtml += `              <div class="row">
                                                 <div class="p-3">Hotel Name : ${detail_hotel.name}</div>

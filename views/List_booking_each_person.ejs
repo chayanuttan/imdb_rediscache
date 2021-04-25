@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>เราเที่ยวคนเดียว.com</title>
+  </head>
+  <body>
+    <%- include layout %>
+    <div id="booking_list_each_person">
+
+    </div>
+
+    <script>
+      const xhttp = new XMLHttpRequest();
+
+      xhttp.open("GET", "http://localhost:3000/hotel/<%= id%>/detail_List_booking", false);
+      xhttp.send();
+
+      const List_booking = JSON.parse(xhttp.responseText);
+      console.log(List_booking);
+
+      let innerhtml = "";
+
+      innerhtml += `<div class=\"container\"">
+                      <div class="row">`;
+
+      for(let i = 0; i < List_booking["List_Booking"].length; i++){
+        innerhtml +=  ` <div class="row">
+                          <div class="col-3 align-self-center" style="padding">
+                            Picture ${i}
+                          </div>
+                          <div class="col-9">
+                            <div class="row">
+                              Hotel ID : ${List_booking["List_Booking"][i].hotel_id}
+                            </div>
+                            <div class="row">
+                              check in date : ${List_booking["List_Booking"][i].check_in_date}
+                            </div>
+                            <div class="row">
+                              check out date : ${List_booking["List_Booking"][i].check_out_date}
+                            </div>
+                          </div>
+                        </div>`;
+      };
+                        
+      innerhtml +=  ` </div>
+                    </div>`;
+
+      document.getElementById('booking_list_each_person').innerHTML = innerhtml;
+    </script>
+
+  </body>
+</html>
