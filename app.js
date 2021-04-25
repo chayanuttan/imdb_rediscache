@@ -8,7 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var blogRouter = require('./routes/blog');
 var searchRouter = require('./routes/search');
-var Oauth_mongo = require('./routes//Oauth');
+var Oauth_mongo = require('./routes/Oauth');
+var Booking = require('./routes/Booking');
 
 var app = express();
 
@@ -20,13 +21,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/blog', blogRouter);
 app.use('/search', searchRouter);
 app.use('/Oauth', Oauth_mongo);
+app.use('/hotel', Booking);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const monk = require('monk')
 // Connection URL
-const url = 'localhost:27017/hotelsystem';
+const url = 'mongodb://root_hotel:root_hotel@localhost:27017/hotelsystem';
 const db = monk(url);
 // const axios = require('axios')
 // const redis = require('redis')

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body> 
+        <%- include layout %>
+
+        <div id="hello">
+
+        </div>
+
+        <script>
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("GET", "http://localhost:3000/hotel/<%= id%>/detail", false);
+            xhttp.send();
+
+            const detail_hotel = JSON.parse(xhttp.responseText);
+
+            console.log(detail_hotel);
+
+            // detail hotel
+            let innerhtml  = "<div class=\"container\">";
+                innerhtml += `  <form class="" action="/hotel/booking" method="post">`;
+
+                innerhtml += `  <div class="row justify-content-start">`;
+                innerhtml += `      <div class="col-4">`;
+                innerhtml += `          <a">
+                                            <img alt="Qries" src="https://media.istockphoto.com/photos/hotel-room-suite-with-view-picture-id627892060?k=6&m=627892060&s=612x612&w=0&h=lVIi3QTDsZ1UDnMAjuy8ob9Zm6sBPCZ84x_e_OUl7Wk="
+                                            width=230" height="200">
+                                        </a>`;
+                innerhtml += `      </div>`;
+                innerhtml += `      <div class="col-8">`;
+                innerhtml += `          <div class="row">`;
+                innerhtml += `              <div class="row">
+                                                <div class="p-3">ID : ${detail_hotel.id}</div>
+                                                <input type="hidden" id="hotel_id" name="hotel_id" value="${detail_hotel.id}">
+                                            </div>`;
+                innerhtml += `              <div class="row">
+                                                <div class="p-3">Hotel Name : ${detail_hotel.name}</div>
+                                            </div>`;
+                innerhtml += `              <div class="row">
+                                                <div class="p-3">Location : ${detail_hotel.location}</div>
+                                            </div>`;
+                innerhtml += `              <div class="row">
+                                                <div class="p-3">Phone Number : ${detail_hotel.phone}</div>
+                                            </div>`;
+                innerhtml += `          </div>`;
+                innerhtml += `      </div>`;
+                innerhtml += `  </div>`;
+
+                innerhtml += `  <hr style="border: 1px solid black">`;
+
+                innerhtml += `  <div class="row justify-content-start">`;
+
+                
+                innerhtml += `      <div class="row">
+                                        <div class="p-3">When would you like to stay at Hotel Name 1 ?</div>
+                                    </div>`;
+                innerhtml += `      <div class="row">`;
+                innerhtml += `          <div class="col-5">
+                                            <div class="row">
+                                                <div class="p-3">Check-In date</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <input type="datetime-local" id="check_in_date" name="check_in_date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="row">
+                                                <div class="p-3">Check-Out date</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <input type="datetime-local" id="check_out_date" name="check_out_date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                innerhtml += `      <div class="row justify-content-end">
+                                        <div class="col-3">
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                        </div>
+                                    </div>`;
+                innerhtml += `  </div>`;
+
+                innerhtml += `  <hr style="border: 1px solid black">`;
+
+                innerhtml += `  </form>`;
+
+                innerhtml += `</div>`;
+
+            document.getElementById('hello').innerHTML = innerhtml;
+        </script>
+    </body>
+</html>

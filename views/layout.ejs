@@ -2,6 +2,28 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+  // Original JavaScript code by Chirp Internet: chirpinternet.eu
+  // Please acknowledge use of this code by including this header.
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+</script>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: aquamarine;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">เราเที่ยวคนเดียว.com</a>
@@ -17,26 +39,34 @@
             <a class="nav-link" href="#" >List</a>
           </li>
 
-          
-          <div id="not_login_yet">
+          <div id="login" class="headerNmae">
             <li class="nav-item">
               <a class="nav-link" href="/Oauth/login" >Sign in</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Oauth/register" >Sing up</a>
             </li>
-          </div>
-
-          <div id="login_success">
-            <li class="nav-item">
-              <a class="nav-link" href="#" >name</a>
-            </li>
-          </div>
+          </div>                 
 
           <script>
-            var user = document.cookie;
+            // If can't access any cookie from javascript
+            // https://stackoverflow.com/questions/17508027/cant-access-cookies-from-document-cookie-in-js-but-browser-shows-cookies-exist
+            var username = getCookie("username");
 
-            alert(user["username"]);
+            Inner_Html = "";
+
+            if (username != "") {
+              Inner_Html +=  '<li class="nav-item">';
+              Inner_Html +=  `<a class=\"nav-link\" >Name : ${username}</a>`;
+              Inner_Html +=  "</li>";
+              Inner_Html +=  "<li class=\"nav-item\">";
+              Inner_Html +=   `<a class="nav-link" href=\"/Oauth/logout\">Logout</a>`;
+              Inner_Html +=  "</li>";
+
+              console.log(Inner_Html);
+              document.getElementById("login").innerHTML = Inner_Html;
+              
+            }
           </script>
           
         </ul>
