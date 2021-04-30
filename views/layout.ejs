@@ -36,7 +36,7 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" >List</a>
+            <a class="nav-link" href="" >List</a>
           </li>
 
           <div id="login" class="headerNmae">
@@ -57,7 +57,7 @@
 
             if (username != "") {
               Inner_Html +=  '<li class="nav-item">';
-              Inner_Html +=  `<a class=\"nav-link\" >Name : ${username}</a>`;
+              Inner_Html +=  `<a class=\"nav-link\" href=\"/hotel/${username}/List_booking\" >Name : ${username}</a>`;
               Inner_Html +=  "</li>";
               Inner_Html +=  "<li class=\"nav-item\">";
               Inner_Html +=   `<a class="nav-link" href=\"/Oauth/logout\">Logout</a>`;

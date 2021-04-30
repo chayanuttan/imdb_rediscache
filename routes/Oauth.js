@@ -43,7 +43,7 @@ router.get('/logout', function (req, res, next) {
     // To delete a cookie, you just need to set the value of
     // the cookie to empty and set the value of expires to a passed date.
 
-    res.cookie('username','', { maxAge: 0, httpOnly: true });
+    res.cookie('username','', { maxAge: 0, httpOnly: false });
 
     res.render('index');
 });
@@ -60,7 +60,7 @@ router.post('/register', function (req, res, next) {
       .then(async (data) =>{
         if (data = !undefined){ // หาก ลงทะเบียนสำเร็จ
             // จะเก็บ id object ลง username
-            res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: true });
+            res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: false });
             console.log('register successfully');
         } else {
             res.render('sign_up');
@@ -72,12 +72,12 @@ router.post('/register', function (req, res, next) {
 router.post('/login', function (req, res, next) {
     console.log(req.body.username);
     console.log(req.body.password);
+    // ยังไม่ได้เช็คว่ารหัสถูกต้องหรือป่าว
     var userData = db.get('user');
     userData.find({username:req.body.username},{password:req.body.password})
       .then(async (data) => {
-        console.log(data)
         if (data = !undefined){
-        res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: true });
+        res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: false });
         console.log('login successfully');
         }else {
             res.render('sign_in');}
