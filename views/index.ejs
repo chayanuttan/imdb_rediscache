@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>เราเที่ยวคนเดียว.com</title>
-  </head>
-  <body>
-    <%- include layout %>
+
+<head>
+  <title>เราเที่ยวคนเดียว.com</title>
+</head>
+
+<body>
+  <%- include layout %>
     <div class="container">
       <br>
-      <h1>ใส่ชื่อจังหวัดที่ต้องการค้นหาโรงแรม</h1>
+      <h1>ทำการค้นหาโรงแรมที่คุณสนใจ</h1>
+      ตัวเลือกการค้นหา:
       <form class="" action="/search" method="post">
         <div class="form-group">
-            <input type="text" name="name" value="" class="form-control">
+          <input type="radio" name="hotelOption" value="country">ประเทศ
+          <input type="radio" name="hotelOption" value="region" checked="checked">จังหวัด
+          <input type="radio" name="hotelOption" value="rating">ความนิยม(0-5)
+          <input type="text" name="name" value="" class="form-control">
         </div><br>
-        <input type="submit" name="" value="หาโรงแรมที่ดีที่สุด" class="btn" style="background-color: aquamarine;"> 
-    </form>
+        <input type="submit" name="" value="หาโรงแรมที่ดีที่สุด" class="btn" style="background-color: aquamarine;">
+      </form>
+
+
+
     </div>
-  </body>
+</body>
+
 </html>

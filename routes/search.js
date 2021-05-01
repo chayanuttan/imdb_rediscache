@@ -20,13 +20,28 @@ router.get('/', function (req, res, next) {
 
 router.post('/', async (req, res, next) => {
   console.log(req.body.name);
-    var HotelData = db.get('hotel');
-    HotelData.find({region:req.body.name+" Province"})
+  var HotelData = db.get('hotel');
+  var searchOption = req.body.hotelOption;
+  if (req.body.hotelOption == "region") {
+    HotelData.find({region: req.body.name + " Province" })
       .then(async (data) => {
         res.render('resultsearch', { items: data });
       });
-    // res.json({items: data});
-  });
+  }
+  if (req.body.hotelOption == "country") {
+    HotelData.find({country: req.body.name})
+      .then(async (data) => {
+        res.render('resultsearch', { items: data });
+      });
+  }
+  if (req.body.hotelOption == "rating") {
+    HotelData.find({rating: req.body.name})
+      .then(async (data) => {
+        res.render('resultsearch', { items: data });
+      });
+  }
+
+});
 
 
 module.exports = router;
