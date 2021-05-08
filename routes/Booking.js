@@ -56,15 +56,19 @@ router.get('/:id/detail_List_booking', function (req, res, next) {
 // ในหน้า List แต่ละโรมแรมจะมี href ที่ระบุแต่ละ ID เพื่อเข้าไป booking
 // id : Hotel ID
 router.get('/:id', function (req, res, next) {
-    var HotelData = db.get('hotel');
-    HotelData.find({_id:req.params.id})
-      .then(async (data) => {
-        console.log(data[0])
-        res.render('detail_hotel',{items:data[0]});
-      });
-    //let data_hotel = data_hotels.find(c => c.id == (req.params.id));
-    //if(!data_hotels) res.status(404).send("Not found");
-    //res.render('detail_hotel',{ id: data_hotel.id});
+  if(req.body.user_name == ""){
+    res.render('sign_in');
+  }
+
+  var HotelData = db.get('hotel');
+  HotelData.find({_id:req.params.id})
+    .then(async (data) => {
+      console.log(data[0])
+      res.render('detail_hotel',{items:data[0]});
+    });
+  //let data_hotel = data_hotels.find(c => c.id == (req.params.id));
+  //if(!data_hotels) res.status(404).send("Not found");
+  //res.render('detail_hotel',{ id: data_hotel.id});
 });
 
 // หน้าโชว์รายละเอียดว่าได้จองที่ไหนไปบ้าง
@@ -78,9 +82,6 @@ router.get('/:user_name/List_booking', function (req, res, next) {
 });
 
 router.post('/booking', function (req, res, next) {
-  if(req.body.user_name == ""){
-    res.render('sign_in');
-  }
 
   var bookdata = db.get('user');
   bookdata.update({username:req.body.user_name}, {$set: {bookingdata:{hotel_id: req.body.hotel_id,
