@@ -7,23 +7,29 @@
 
 <body>
   <%- include layout %>
-    <div class="container">
+  <div class="container">
+    <br>
+    <h1>ทำการค้นหาโรงแรมที่คุณสนใจ</h1>
+    <form class="" action="/search" method="post">
+      ตัวเลือกการค้นหา :
+      <input type="radio" name="hotelOption" value="country" style="margin-right: 5px;">ประเทศ
+      <input type="radio" name="hotelOption" value="region" checked="checked" style="margin-right: 5px;margin-left: 7px;">จังหวัด
+      <input type="radio" name="hotelOption" value="rating" style="margin-right: 5px;margin-left: 7px;">ความนิยม(0-5)
       <br>
-      <h1>ทำการค้นหาโรงแรมที่คุณสนใจ</h1>
-      ตัวเลือกการค้นหา:
-      <form class="" action="/search" method="post">
-        <div class="form-group">
-          <input type="radio" name="hotelOption" value="country">ประเทศ
-          <input type="radio" name="hotelOption" value="region" checked="checked">จังหวัด
-          <input type="radio" name="hotelOption" value="rating">ความนิยม(0-5)
+      <br>
+      <div class="row">
+        <div class="col-9">
           <input type="text" name="name" value="" class="form-control">
-        </div><br>
-        <input type="submit" name="" value="หาโรงแรมที่ดีที่สุด" class="btn" style="background-color: aquamarine;">
-      </form>
-
-
-
-    </div>
+        </div>
+        <div class="col-3">
+          <input type="submit" name="" value="หาโรงแรมที่ดีที่สุด" class="btn" style="background-color: aquamarine;" placeholder="ชื่อโรมแรม">
+        </div>
+      </div>
+      
+      <br>
+      
+    </form>
+  </div>
 </body>
 
 </html>
