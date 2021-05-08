@@ -56,9 +56,6 @@ router.get('/:id/detail_List_booking', function (req, res, next) {
 // ในหน้า List แต่ละโรมแรมจะมี href ที่ระบุแต่ละ ID เพื่อเข้าไป booking
 // id : Hotel ID
 router.get('/:id', function (req, res, next) {
-  if(req.body.user_name == ""){
-    res.render('sign_in');
-  }
 
   var HotelData = db.get('hotel');
   HotelData.find({_id:req.params.id})
