@@ -80,7 +80,8 @@ router.post('/login', function (req, res, next) {
         res.cookie('username',req.body.username, { maxAge: 900000, httpOnly: false });
         console.log('login successfully');
         }else {
-            res.render('sign_in');}
+            res.render('sign_in');
+          }
         res.render('index');
     });
 });

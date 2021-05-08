@@ -75,18 +75,22 @@ router.get('/:user_name/List_booking', function (req, res, next) {
     console.log(data[0].bookingdata)
     res.render('List_booking_each_person',{ booked: data[0]});
   });
-
 });
 
 router.post('/booking', function (req, res, next) {
-    var bookdata = db.get('user');
-    bookdata.update({username:req.body.user_name}, {$set: {bookingdata:{hotel_id: req.body.hotel_id,
-      check_in_date: req.body.check_in_date,
-      check_out_date: req.body.check_out_date}}})
-      console.log('Booking Successful');
-    bookdata.find({username:req.body.user_name}).then(async (data) => {
-    console.log(data[0].bookingdata)
-    res.render('List_booking_each_person',{ booked: data[0]});
+  if(req.body.user_name == ""){
+    res.render('sign_in');
+  }
+
+  var bookdata = db.get('user');
+  bookdata.update({username:req.body.user_name}, {$set: {bookingdata:{hotel_id: req.body.hotel_id,
+    check_in_date: req.body.check_in_date,
+    check_out_date: req.body.check_out_date}}})
+    console.log('Booking Successful');
+    
+  bookdata.find({username:req.body.user_name}).then(async (data) => {
+  console.log(data[0].bookingdata)
+  res.render('List_booking_each_person',{ booked: data[0]});
   });
 });
 
